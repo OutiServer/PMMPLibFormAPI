@@ -50,14 +50,11 @@ class SimpleForm extends BaseForm
     public function handleResponse(Player $player, $data): void
     {
         if ($data === null) $this->close();
-        else {
-            // もしint以外の型が返された場合
-            if (!is_int($data)) throw new FormValidationException("I expected a response of int but " . gettype($data) . " was returned");
-            // 範囲外だ
-            elseif ($data < 0 || count($this->buttons) <= $data) throw new FormValidationException("Out of range $data");
-
-            $this->response($data);
-        }
+        // もしint以外の型が返された場合
+        elseif (!is_int($data)) throw new FormValidationException("I expected a response of int but " . gettype($data) . " was returned");
+        // 範囲外だ
+        elseif ($data < 0 || count($this->buttons) <= $data) throw new FormValidationException("Out of range $data");
+        else $this->response($data);
     }
 
     #[ArrayShape(["type" => "string", "title" => "string", "content" => "string", "buttons" => "false|string"])]

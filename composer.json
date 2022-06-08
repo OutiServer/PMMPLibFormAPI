@@ -1,0 +1,12 @@
+{
+  "name": "ken_cir/lib-form-api",
+  "description": "API for easy use of Form in PocketMine4.x",
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  },
+  "require-dev": {
+    "pocketmine/pocketmine-mp": "4.5.0"
+  }
+}

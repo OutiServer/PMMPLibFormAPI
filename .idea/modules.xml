@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FormAPI.iml" filepath="$PROJECT_DIR$/.idea/FormAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/LibFormAPI.iml" filepath="$PROJECT_DIR$/.idea/LibFormAPI.iml" />
     </modules>
   </component>
 </project>

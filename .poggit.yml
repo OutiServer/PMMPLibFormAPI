@@ -3,6 +3,8 @@ build-by-default: true
 branches:
 - master
 projects:
-  PMMPLibFormAPI:
+  LibFormAPI:
     path: ""
+    type: library
+    model: virion
 ...

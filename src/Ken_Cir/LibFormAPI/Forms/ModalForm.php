@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ken_Cir\LibFormAPI;
+namespace Ken_Cir\LibFormAPI\Forms;
 
 use JetBrains\PhpStorm\ArrayShape;
 use pocketmine\form\FormValidationException;
@@ -38,7 +38,7 @@ class ModalForm extends BaseForm
      */
     private string $button2;
 
-    public function __construct(Player $player, string $title, string $content, string $button1, string $button2, callable $responseHandle, ?callable $closeHandler = null)
+    public function __construct(Player $player, string $title, string $content, string $button1, string $button2, callable $responseHandle, callable $closeHandler = null)
     {
         parent::__construct($player, $responseHandle, $closeHandler);
 

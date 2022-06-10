@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ken_Cir\LibFormAPI;
+namespace Ken_Cir\LibFormAPI\FormContents\SimpleForm;
 
 use JsonSerializable;
 
@@ -21,7 +21,7 @@ class SimpleFormButton implements JsonSerializable
 
     private string $iconType;
 
-    public function __construct(string $text, ?string $iconPath = null, string $iconType = self::IMAGE_TYPE_PATH)
+    public function __construct(string $text, string $iconPath = null, string $iconType = self::IMAGE_TYPE_PATH)
     {
         $this->text = $text;
         $this->iconPath = $iconPath;

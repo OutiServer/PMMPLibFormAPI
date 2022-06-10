@@ -1,6 +1,6 @@
 <?php
 
-namespace Ken_Cir\LibFormAPI;
+namespace Ken_Cir\LibFormAPI\Forms;
 
 use pocketmine\form\Form;
 use pocketmine\player\Player;
@@ -37,7 +37,7 @@ abstract class BaseForm implements Form
      */
     protected $closeHandler;
 
-    public function __construct(Player $player, callable $responseHandle, ?callable $closeHandler = null)
+    public function __construct(Player $player, callable $responseHandle, callable $closeHandler = null)
     {
         $this->responded = false;
         $this->closed = false;

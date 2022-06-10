@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ken_Cir\LibFormAPI;
+namespace Ken_Cir\LibFormAPI\Forms;
 
 use JetBrains\PhpStorm\ArrayShape;
+use Ken_Cir\LibFormAPI\FormContents\SimpleForm\SimpleFormButton;
 use pocketmine\form\FormValidationException;
 use pocketmine\player\Player;
 
@@ -36,7 +37,7 @@ class SimpleForm extends BaseForm
      * @param callable $responseHandle
      * @param callable|null $closeHandler
      */
-    public function __construct(Player $player, string $title, string $content, array $buttons, callable $responseHandle, ?callable $closeHandler = null)
+    public function __construct(Player $player, string $title, string $content, array $buttons, callable $responseHandle, callable $closeHandler = null)
     {
         parent::__construct($player, $responseHandle, $closeHandler);
 

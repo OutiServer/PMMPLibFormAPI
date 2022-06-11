@@ -51,6 +51,38 @@ class ContentSlider extends BaseContent
         else $this->default = $min;
     }
 
+    /**
+     * @return float
+     */
+    public function getMin(): float
+    {
+        return $this->min;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMax(): float
+    {
+        return $this->max;
+    }
+
+    /**
+     * @return float
+     */
+    public function getStep(): float
+    {
+        return $this->step;
+    }
+
+    /**
+     * @return float
+     */
+    public function getDefault(): float
+    {
+        return $this->default;
+    }
+
     #[ArrayShape(["type" => "string", "text" => "string", "min" => "float", "max" => "float", "step" => "float|null", "default" => "float"])]
     public function jsonSerialize(): array
     {

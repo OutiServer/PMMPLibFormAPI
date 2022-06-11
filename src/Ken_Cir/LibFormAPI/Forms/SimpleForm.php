@@ -68,4 +68,9 @@ class SimpleForm extends BaseForm
             "buttons" => json_decode(json_encode($this->buttons), true)
         );
     }
+
+    public function reSend(): void
+    {
+        $this->getPlayer()->sendForm($this);
+    }
 }

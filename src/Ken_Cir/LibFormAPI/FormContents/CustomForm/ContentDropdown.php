@@ -38,6 +38,23 @@ class ContentDropdown extends BaseContent
         $this->default = $default;
     }
 
+    /**
+     * @return string[]
+     */
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getDefault(): int
+    {
+        return $this->default;
+    }
+
     #[ArrayShape(["type" => "string", "text" => "string", "options" => "string[]", "default" => "int"])]
     public function jsonSerialize(): array
     {

@@ -19,4 +19,12 @@ abstract class BaseContent implements JsonSerializable
     {
         $this->text = $text;
     }
+
+    /**
+     * @return string
+     */
+    public function getText(): string
+    {
+        return $this->text;
+    }
 }

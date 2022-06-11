@@ -69,4 +69,9 @@ class ModalForm extends BaseForm
             "button2" => $this->button2,
         );
     }
+
+    public function reSend(): void
+    {
+        $this->getPlayer()->sendForm($this);
+    }
 }

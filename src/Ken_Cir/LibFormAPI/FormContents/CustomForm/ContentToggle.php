@@ -22,6 +22,14 @@ class ContentToggle extends BaseContent
         $this->default = $default;
     }
 
+    /**
+     * @return bool
+     */
+    public function getDefault(): bool
+    {
+        return $this->default;
+    }
+
     #[ArrayShape(["type" => "string", "text" => "string", "default" => "bool"])]
     public function jsonSerialize(): array
     {

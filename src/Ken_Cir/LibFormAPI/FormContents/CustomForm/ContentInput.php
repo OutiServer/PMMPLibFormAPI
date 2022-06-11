@@ -30,6 +30,22 @@ class ContentInput extends BaseContent
         $this->default = $default;
     }
 
+    /**
+     * @return string
+     */
+    public function getPlaceholder(): string
+    {
+        return $this->placeholder;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefault(): string
+    {
+        return $this->default;
+    }
+
     #[ArrayShape(["type" => "string", "text" => "string", "placeholder" => "string", "default" => "string"])]
     public function jsonSerialize(): array
     {

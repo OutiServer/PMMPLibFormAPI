@@ -39,6 +39,22 @@ class ContentStepSlider extends BaseContent
         $this->default = $default;
     }
 
+    /**
+     * @return string[]
+     */
+    public function getSteps(): array
+    {
+        return $this->steps;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDefault(): int
+    {
+        return $this->default;
+    }
+
     #[ArrayShape(["type" => "string", "text" => "string", "steps" => "string[]", "default" => "int"])]
     public function jsonSerialize(): array
     {

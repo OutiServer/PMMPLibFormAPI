@@ -37,6 +37,13 @@ abstract class BaseForm implements Form
      */
     protected $closeHandler;
 
+    /**
+     * レスポンスされたデータ
+     *
+     * @var mixed
+     */
+    protected mixed $responseData;
+
     public function __construct(Player $player, callable $responseHandle, callable $closeHandler = null)
     {
         $this->responded = false;
@@ -44,6 +51,7 @@ abstract class BaseForm implements Form
         $this->player = $player;
         $this->responseHandle = $responseHandle;
         $this->closeHandler = $closeHandler;
+        $this->responseData = null;
     }
 
     /**
@@ -75,5 +83,13 @@ abstract class BaseForm implements Form
     {
         ($this->responseHandle)($this->player, $data);
         $this->responded = true;
+        $this->responseData = $data;
     }
+
+    /**
+     * Formを再送信
+     *
+     * @return void
+     */
+    abstract public function reSend(): void;
 }

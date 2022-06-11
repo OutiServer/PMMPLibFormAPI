@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ken_Cir\LibFormAPI\FormContents\CustomForm;
 
+use InvalidArgumentException;
 use JetBrains\PhpStorm\ArrayShape;
 
 class ContentStepSlider extends BaseContent
@@ -30,6 +31,9 @@ class ContentStepSlider extends BaseContent
     public function __construct(string $text, array $steps, int $default = 0)
     {
         parent::__construct($text);
+
+        // ($defaultが)範囲外だ
+        if ($default < 0 or count($steps) <= $default) throw new InvalidArgumentException("default must be greater than or equal to 0 and less than or equal to " . count($steps));
 
         $this->steps = $steps;
         $this->default = $default;

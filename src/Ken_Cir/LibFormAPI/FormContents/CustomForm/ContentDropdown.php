@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ken_Cir\LibFormAPI\FormContents\CustomForm;
 
+use InvalidArgumentException;
 use JetBrains\PhpStorm\ArrayShape;
 
 class ContentDropdown extends BaseContent
@@ -30,6 +31,8 @@ class ContentDropdown extends BaseContent
     public function __construct(string $text, array $options, int $default = 0)
     {
         parent::__construct($text);
+
+        if ($default < 0 or count($options) <= $default) throw new InvalidArgumentException("default must be greater than or equal to 0 and less than or equal to " . count($options));
 
         $this->options = $options;
         $this->default = $default;

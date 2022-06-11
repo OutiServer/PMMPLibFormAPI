@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ken_Cir\LibFormAPI\FormContents\CustomForm;
 
+use InvalidArgumentException;
 use JetBrains\PhpStorm\ArrayShape;
 
 class ContentSlider extends BaseContent
@@ -39,6 +40,9 @@ class ContentSlider extends BaseContent
     public function __construct(string $text, float $min, float $max, float $step = 1.0, float $default = null)
     {
         parent::__construct($text);
+
+        if ($min < 0 or $min > $max) throw new InvalidArgumentException("min must be greater than or equal to 0 and less than or equal to max");
+        elseif ($default !== null and ($default < $min or $default > $max)) throw new InvalidArgumentException("default must be greater than or equal to min and less than or equal to max");
 
         $this->min = $min;
         $this->max = $max;

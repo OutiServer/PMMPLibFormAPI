@@ -14,7 +14,7 @@ class BackFormTask extends Task
     public function __construct(callable $callable, array $args = [])
     {
         $this->callable = $callable;
-        $this->args = [];
+        $this->args = $args;
     }
 
     public function onRun(): void

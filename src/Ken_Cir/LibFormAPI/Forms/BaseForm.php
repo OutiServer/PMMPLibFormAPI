@@ -4,22 +4,24 @@ namespace Ken_Cir\LibFormAPI\Forms;
 
 use pocketmine\form\Form;
 use pocketmine\player\Player;
+use pocketmine\plugin\PluginBase;
 
 abstract class BaseForm implements Form
 {
+    protected PluginBase $plugin;
     /**
      * レスポンスが何か返されたか
      *
      * @var bool
      */
-    public bool $responded;
+    protected bool $responded;
 
     /**
      * フォームが閉じられたか
      *
      * @var bool
      */
-    public bool $closed;
+    protected bool $closed;
 
     private Player $player;
 
@@ -44,7 +46,7 @@ abstract class BaseForm implements Form
      */
     protected mixed $responseData;
 
-    public function __construct(Player $player, callable $responseHandle, callable $closeHandler = null)
+    public function __construct(PluginBase $plugin, Player $player, callable $responseHandle, callable $closeHandler = null)
     {
         $this->responded = false;
         $this->closed = false;

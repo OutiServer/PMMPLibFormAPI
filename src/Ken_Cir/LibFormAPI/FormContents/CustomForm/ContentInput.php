@@ -8,6 +8,12 @@ use JetBrains\PhpStorm\ArrayShape;
 
 class ContentInput extends BaseContent
 {
+    public const TYPE_STRING = 0;
+
+    public const TYPE_INT = 1;
+
+    public const TYPE_PLAYER = 2;
+
     /**
      * プレースホルダー
      *
@@ -22,12 +28,28 @@ class ContentInput extends BaseContent
      */
     private string $default;
 
-    public function __construct(string $text, string $placeholder = "", string $default = "")
+    /**
+     * このInputが必須であるか
+     *
+     * @var bool
+     */
+    private bool $requirement;
+
+    /**
+     * 型
+     * @var int
+     */
+    private int $inputType;
+
+
+    public function __construct(string $text, string $placeholder = "", string $default = "", bool $requirement = true, int $inputType = self::TYPE_STRING)
     {
         parent::__construct($text);
 
         $this->placeholder = $placeholder;
         $this->default = $default;
+        $this->requirement = $requirement;
+        $this->inputType = $inputType;
     }
 
     /**
@@ -44,6 +66,22 @@ class ContentInput extends BaseContent
     public function getDefault(): string
     {
         return $this->default;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRequirement(): bool
+    {
+        return $this->requirement;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInputType(): int
+    {
+        return $this->inputType;
     }
 
     #[ArrayShape(["type" => "string", "text" => "string", "placeholder" => "string", "default" => "string"])]

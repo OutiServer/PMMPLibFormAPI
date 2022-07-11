@@ -1,6 +1,6 @@
 name: LibFormAPI
 description: API for easy use of Form in PocketMine4.x
 author: Ken_Cir
-version: 1.0.0
+version: 1.1.0
 api: 4.0.0
 main: Ken_Cir\LibFormAPI\LibFormAPI

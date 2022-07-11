@@ -13,8 +13,11 @@ use Ken_Cir\LibFormAPI\FormContents\CustomForm\ContentLabel;
 use Ken_Cir\LibFormAPI\FormContents\CustomForm\ContentSlider;
 use Ken_Cir\LibFormAPI\FormContents\CustomForm\ContentStepSlider;
 use Ken_Cir\LibFormAPI\FormContents\CustomForm\ContentToggle;
+use Ken_Cir\LibFormAPI\Utils\FormUtil;
 use pocketmine\form\FormValidationException;
 use pocketmine\player\Player;
+use pocketmine\plugin\PluginBase;
+use pocketmine\utils\TextFormat;
 
 class CustomForm extends BaseForm
 {
@@ -46,9 +49,9 @@ class CustomForm extends BaseForm
      * @param callable $responseHandle
      * @param callable|null $closeHandler
      */
-    public function __construct(Player $player, string $title, array $contents, callable $responseHandle, callable $closeHandler = null)
+    public function __construct(PluginBase $plugin, Player $player, string $title, array $contents, callable $responseHandle, callable $closeHandler = null)
     {
-        parent::__construct($player, $responseHandle, $closeHandler);
+        parent::__construct($plugin, $player, $responseHandle, $closeHandler);
 
         $this->title = $title;
         $this->rawContent = $contents;
@@ -73,7 +76,26 @@ class CustomForm extends BaseForm
         elseif (!is_array($data)) throw new FormValidationException("I expected a response of array but " . gettype($data) . " was returned");
         // 配列内の量が一致しない
         elseif (count($data) !== count($this->content)) throw new FormValidationException("Array quantities do not match");
-        else $this->response($data);
+
+        foreach ($this->rawContent as $key => $rawContent) {
+            if ($rawContent instanceof ContentInput) {
+                if ($rawContent->isRequirement() and !$data[$key]) {
+                    $player->sendMessage("[FormAPI] " . TextFormat::RED . "{$rawContent->getText()}は入力必須項目です");
+                    $player->sendMessage("3秒後前のFormに戻ります");
+
+                    FormUtil::backForm($this->plugin, [$this, "reSend"], []);
+                    return;
+                }
+                elseif ($rawContent->getInputType() === ContentInput::TYPE_INT and is_int($data[$key])) {
+                    $player->sendMessage("[FormAPI] " . TextFormat::RED . "{$rawContent->getText()}は入力必須項目で数値である必要があります");
+                    $player->sendMessage("3秒後前のFormに戻ります");
+
+                    FormUtil::backForm($this->plugin, [$this, "reSend"], []);
+                    return;
+                }
+            }
+        }
+        $this->response($data);
     }
 
     #[ArrayShape(["type" => "string", "title" => "string", "content" => "array"])]

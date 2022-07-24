@@ -71,7 +71,10 @@ class CustomForm extends BaseForm
 
     public function handleResponse(Player $player, $data): void
     {
-        if ($data === null) $this->close();
+        if ($data === null) {
+            $this->close();
+            return;
+        }
         // 配列以外が返された
         elseif (!is_array($data)) throw new FormValidationException("I expected a response of array but " . gettype($data) . " was returned");
         // 配列内の量が一致しない

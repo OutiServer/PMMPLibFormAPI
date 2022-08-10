@@ -89,7 +89,8 @@ class CustomForm extends BaseForm
                     FormUtil::backForm($this->plugin, [$this, "reSend"], []);
                     return;
                 }
-                elseif ($rawContent->getInputType() === ContentInput::TYPE_INT and !is_int($data[$key])) {
+                elseif ($rawContent->getInputType() === ContentInput::TYPE_INT and !is_numeric($data[$key])) {
+                    var_dump($data[$key]);
                     $player->sendMessage("[FormAPI] " . TextFormat::RED . "{$rawContent->getText()}は入力必須項目で数値である必要があります");
                     $player->sendMessage("3秒後前のFormに戻ります");
 

@@ -48,6 +48,7 @@ abstract class BaseForm implements Form
 
     public function __construct(PluginBase $plugin, Player $player, callable $responseHandle, callable $closeHandler = null)
     {
+        $this->plugin = $plugin;
         $this->responded = false;
         $this->closed = false;
         $this->player = $player;

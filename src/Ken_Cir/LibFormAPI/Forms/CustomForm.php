@@ -82,7 +82,7 @@ class CustomForm extends BaseForm
 
         foreach ($this->rawContent as $key => $rawContent) {
             if ($rawContent instanceof ContentInput) {
-                if ($rawContent->isRequirement() and is_null($data[$key])) {
+                if ($rawContent->isRequirement() and !$data[$key] and $rawContent->getInputType() === ContentInput::TYPE_STRING) {
                     $player->sendMessage("[FormAPI] " . TextFormat::RED . "{$rawContent->getText()}は入力必須項目です");
                     $player->sendMessage("3秒後前のFormに戻ります");
 
